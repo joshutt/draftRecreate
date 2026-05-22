@@ -92,6 +92,10 @@ WHERE round = %s AND pick = %s AND season = %s
 
 Values: `(playerid, round, pick, season)` — `season` comes from the `--season` CLI argument, not the CSV.
 
+### Commit Behavior
+
+The database connection must use **autocommit mode**. Each UPDATE is committed immediately so that rows are visible to other clients as each pick fires, rather than being held in a transaction until the replay finishes.
+
 ### Rows Affected Check
 
 After each UPDATE, inspect the affected row count:

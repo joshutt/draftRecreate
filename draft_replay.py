@@ -95,12 +95,12 @@ def main():
         database=db_name,
         user=user,
         password=password,
+        autocommit=True,
     )
     cursor = conn.cursor()
 
     try:
         run_replay(picks, season=args.season, cursor=cursor, table=table)
-        conn.commit()
     finally:
         cursor.close()
         conn.close()
